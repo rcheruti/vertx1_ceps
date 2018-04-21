@@ -5,6 +5,7 @@ import io.vertx.ext.web.Router;
 
 public class SoapBorder {
   
+  // TODO: criar as bordas SOAP
   public Router createRouter(Vertx vertx){
     Router router = Router.router(vertx);
     

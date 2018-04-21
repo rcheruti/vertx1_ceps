@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="vertx1_ceps" />
+        <module name="vertx1_ceps (1)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="9">
       <module name="vertx1_ceps" target="1.9" />
+      <module name="vertx1_ceps (1)" target="1.9" />
       <module name="vertx_service_discovery" target="1.5" />
     </bytecodeTargetLevel>
   </component>
