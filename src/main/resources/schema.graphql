@@ -1,0 +1,21 @@
+
+scalar Json
+
+type Cep {
+  id:           Int
+  bairro:       String
+  cep:          String
+  cidade:       String
+  complemento:  String
+  complemento2: String
+  endereco:     String
+  uf:           String
+  database:     Boolean
+}
+
+type Query {
+  cep(cep: String): Cep
+  health: Json
+  test(json: Json): Json
+}
+
