@@ -4,7 +4,6 @@ package br.com.rcc_dev.testes
 import br.com.rcc_dev.testes.Utils
 import br.com.rcc_dev.testes.borders.GraphqlBorder
 import br.com.rcc_dev.testes.borders.RestBorder
-import br.com.rcc_dev.testes.borders.SoapBorder
 import br.com.rcc_dev.testes.startup.DatabaseControl
 import br.com.rcc_dev.testes.startup.GuiceModule
 import br.com.rcc_dev.testes.startup.MetricsControl
@@ -36,7 +35,6 @@ fun startServer(vertx: Vertx, config: JsonObject, injector: Injector) {
   val router = Router.router(vertx)
   router.route().handler(BodyHandler.create())
   router.mountSubRouter("/", injector.getInstance(RestBorder::class.java).createRouter(vertx))
-  router.mountSubRouter("/soap", injector.getInstance(SoapBorder::class.java).createRouter(vertx))
   router.mountSubRouter("/graphql", injector.getInstance(GraphqlBorder::class.java).createRouter(vertx))
 
   val server = vertx.createHttpServer()
