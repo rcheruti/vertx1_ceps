@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/vertx1_ceps.iml" filepath="$PROJECT_DIR$/vertx1_ceps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../Java/vertx1_ceps_2/vertx1_ceps (1).iml" filepath="$PROJECT_DIR$/../../../Java/vertx1_ceps_2/vertx1_ceps (1).iml" />
     </modules>
   </component>
 </project>

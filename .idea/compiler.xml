@@ -10,8 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="9">
-      <module name="vertx1_ceps" target="1.9" />
-      <module name="vertx_service_discovery" target="1.5" />
+      <module name="vertx1_ceps" target="10" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -11,9 +11,24 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <kotlin.version>1.2.41</kotlin.version>
+    <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>${kotlin.version}</version>
+    </dependency>
+    <!--
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-reflect</artifactId>
+      <version>${kotlin.version}</version>
+    </dependency>
+    -->
 
     <dependency>
       <groupId>io.vertx</groupId>
@@ -138,12 +153,14 @@
     </dependency>
 
     <!--  =========================  Provided and Annotations Processors  ========  -->
+    <!--
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.16.16</version>
+      <version>1.16.20</version>
       <scope>provided</scope>
     </dependency>
+    -->
 
     <!--  =========================  Tests  =====================================  -->
     <dependency>
@@ -171,25 +188,84 @@
     <plugins>
 
       <plugin>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <version>${kotlin.version}</version>
+
+        <!--
+        <configuration>
+          <compilerPlugins>
+            <plugin>all-open</plugin>
+          </compilerPlugins>
+
+          <pluginOptions>
+            <option>all-open:annotation=AllOpen</option>
+          </pluginOptions>
+        </configuration>
+
+        <dependencies>
+          <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-allopen</artifactId>
+            <version>${kotlin.version}</version>
+          </dependency>
+        </dependencies>
+        -->
+
+        <executions>
+          <execution>
+            <id>compile</id>
+            <goals> <goal>compile</goal> </goals>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
+                <sourceDir>${project.basedir}/src/main/java</sourceDir>
+              </sourceDirs>
+            </configuration>
+          </execution>
+          <execution>
+            <id>test-compile</id>
+            <goals> <goal>test-compile</goal> </goals>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
+                <sourceDir>${project.basedir}/src/test/java</sourceDir>
+              </sourceDirs>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.7.0</version>
         <configuration>
-          <source>1.9</source>
-          <target>1.9</target>
+          <source>10</source>
+          <target>10</target>
+          <release>10</release>
         </configuration>
+
+        <dependencies>
+          <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>6.1.1</version> <!-- Use newer version of ASM -->
+          </dependency>
+        </dependencies>
       </plugin>
 
 
       <plugin>
         <groupId>io.ebean</groupId>
         <artifactId>ebean-maven-plugin</artifactId>
-        <version>11.10.1</version>
+        <version>11.11.1</version>
         <executions>
           <!-- enhance main classes -->
           <execution>
             <id>main</id>
             <!-- <phase>process-classes</phase> -->
+            <!-- <phase>compile</phase> -->
             <phase>compile</phase>
             <configuration>
               <transformArgs>debug=1</transformArgs>
